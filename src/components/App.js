@@ -16,6 +16,13 @@ class App extends React.Component {
     };
   }
 
+  //gets our pets successfully
+  componentDidMount() {
+    fetch('/api/pets')
+      .then(response => response.json())
+      .then(pets => this.setState({ pets }));
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -28,7 +35,7 @@ class App extends React.Component {
               <Filters />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets = {this.state.pets}/>
             </div>
           </div>
         </div>
